@@ -1,12 +1,12 @@
 var mongoose = require('mongoose');
 
-if (process.env.NODE_ENV === 'production') {
+// if (process.env.NODE_ENV === 'production') {
     mongoose.connect('mongodb://juangalan23:Asturias23?@ds239648.mlab.com:39648/country-fetcher', {
         useMongoClient: true
     });
-} else {
-    mongoose.connect('mongodb://localhost/country-fetcher');
-}
+// } else {
+//     mongoose.connect('mongodb://localhost/country-fetcher');
+// }
 
 
 var db = mongoose.connection;
