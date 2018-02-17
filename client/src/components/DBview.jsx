@@ -17,35 +17,18 @@ class DBview extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            storedCountries: []
+           
         }
-        this.removeItem = this.removeItem.bind(this);
-        this.getDatafromDB = this.getDatafromDB.bind(this);
+       
+        
     }
 
-    getDatafromDB () {
-        axios.get('/datapost', {
-        })
-        .then( (res) => {
-            this.setState({
-                storedCountries: res.data
-            })
-            console.log('current state ', this.state.storedCountries)
-        })
-    }
+
     componentDidMount() {
-        this.getDatafromDB();
+        this.props.getDatafromDB();
     }
     
-    removeItem(i) {
-        axios.post('/deleteItem', {
-            name: this.state.storedCountries[i].name
-        }) 
-        .then( (res) => {
-            this.getDatafromDB();
-            console.log(res)
-        })
-    }
+
 
     render() {
         return (
@@ -59,7 +42,7 @@ class DBview extends React.Component{
                             <th> Flag </th>
                         </tr>
 
-                        {this.state.storedCountries.map((country, i) => 
+                        {this.props.storedCountries.map((country, i) => 
                         <tr key={country._id}  > 
                             <td> {country.name} </td>
                             <td> {country.capital} </td>
@@ -70,7 +53,8 @@ class DBview extends React.Component{
                             style = {flagStyle}
                             /> 
                             </td>
-                            <td>  <button type='click' onClick={this.removeItem.bind(this, i)} >Remove</button> </td>
+                            <td>  
+                                <button type='click' onClick={this.props.removeItem.bind(this, i)}  >Remove</button> </td>
                         </tr>
                         )}         
                     </tbody>

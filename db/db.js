@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 // if (process.env.NODE_ENV === 'production') {
-    mongoose.connect('mongodb://juangalan23:juan?@ds239648.mlab.com:39648/country-fetcher'
+    mongoose.connect('mongodb://juangalan23:juan@ds239648.mlab.com:39648/country-fetcher'
     , 
     {
         useMongoClient: true
@@ -18,9 +18,6 @@ db.on('error', function() {
     console.log('error in mongoose connection');
 })
 
-// db.once('open', function(){
-//     console.log('we connected to mongangsta')
-// })
 
 var countrySchema = mongoose.Schema({
     name: {type:String,

@@ -11,11 +11,34 @@ class App extends React.Component{
         super(props);
         this.state = {
             searchedCountry: {},
-            showDB: false
+            showDB: false,
+             storedCountries: []
         }
         this.search = this.search.bind(this);
         this.saveToDb = this.saveToDb.bind(this);
         this.toggleShowDB = this.toggleShowDB.bind(this);
+        this.getDatafromDB = this.getDatafromDB.bind(this);
+        this.removeItem = this.removeItem.bind(this);
+    }
+    removeItem(i) {
+        axios.post('/deleteItem', {
+            name: this.state.storedCountries[i].name
+        }) 
+        .then( (res) => {
+            this.getDatafromDB();
+            console.log(res)
+        })
+    }
+
+    getDatafromDB () {
+        axios.get('/datapost', {
+        })
+        .then( (res) => {
+            this.setState({
+                storedCountries: res.data
+            })
+            console.log('current state ', this.state.storedCountries)
+        })
     }
 
     saveToDb () {
@@ -45,6 +68,7 @@ class App extends React.Component{
         this.setState({
             showDB: true
         })
+        this.getDatafromDB()
     }
 
     render() {
@@ -57,7 +81,13 @@ class App extends React.Component{
 
         var showDBBoolean = this.state.showDB;
         if (showDBBoolean) {
-            var dbComponent = <DBview />
+            var dbComponent = <DBview 
+            removeItem={this.removeItem}
+            storedCountries={this.state.storedCountries}
+            getDatafromDB={this.getDatafromDB} 
+
+            />
+
         } else {
             var dbComponent = null;
         }
@@ -66,7 +96,7 @@ class App extends React.Component{
             <div>
                 <h2> Search a country to retrieve its basic info </h2>
                 
-                <SearchCountry search={this.search} />
+                <SearchCountry search={this.search}  getDatafromDB={this.getDatafromDB} />
 
                 <button type="click" value="Save" onClick={this.toggleShowDB} > View your Vacation wishlist </button>
 

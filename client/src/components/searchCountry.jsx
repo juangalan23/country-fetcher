@@ -24,6 +24,8 @@ class SearchCountry extends React.Component{
         this.setState({
             searchText: ''
         })
+         this.props.getDatafromDB()
+
     }
 
     render() {
