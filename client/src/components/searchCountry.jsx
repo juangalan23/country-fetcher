@@ -35,7 +35,7 @@ class SearchCountry extends React.Component{
                    <label>
                        Search country:  
                        <span> </span>
-                       <input type="text" value={this.state.value} onChange={this.handleChange} /> 
+                       <input type="text" value={this.state.searchText} onChange={this.handleChange} /> 
                     </label>
                     <input type="submit" value="Search" />
 

@@ -2,15 +2,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SearchCountry from './components/searchCountry.jsx';
+import Country from './components/Country.jsx';
 import axios from 'axios';
 
 class App extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            searchedCountry: null
+            searchedCountry: {}
         }
         this.search = this.search.bind(this);
+        // this.showCountry = this.showCountry.bind(this);
     }
 
     search(term) {
@@ -18,18 +20,38 @@ class App extends React.Component{
         axios.post('/country', {
             country: term
         })
-        .then( function(res) {
-            console.log(res);
+        .then( (res) => {
+            // console.log('response ', res);
+            this.setState({
+                searchedCountry: res.data
+            })
+            
+        })
+        .catch((err) => {
+            if (err) {
+                console.log('error ', err)
+            }
         }) 
-
     }
+
+    // showCountry () {
+    //     if(Object.keys(this.state.searchedCountry)) {
+
+    //         <Country countryinfo={this.state.searchedCountry} />
+            
+    //         ReactDOM.render(<Country/>, document.getElementById('country'));
+    //     }
+    // }
 
     render() {
         return (
             <div>
-                <h1> Search a country to retrieve its basic info </h1>
+                <h2> Search a country to retrieve its basic info </h2>
 
                 <SearchCountry search={this.search} />
+
+                
+                 <Country countryinfo={this.state.searchedCountry} />
 
             </div>
 

@@ -1,6 +1,6 @@
 const express = require('express');
 var path = require('path');
-const countryDataRetriever = require('../countryhelpers/countryfetcher');
+const countryMethods = require('../countryhelpers/countryfetcher');
 const bodyparser = require('body-parser')
 
 const app = express();
@@ -10,12 +10,12 @@ app.use(bodyparser.json())
 
 
 app.post('/country', function(req, res) {
-    console.log('req body, ', req.body);
-    //TBD how to get the country name from the request body
-    countryDataRetriever(req.body.country, function(data) {
-        console.log(data);
-    })
 
+    countryMethods.countryDataRetriever(req.body.country, function(data) {
+        // var cleanedData = countryMethods.countryArray(data); //array
+        var cleanedData = countryMethods.dataCleaner(data); //object
+        res.send(cleanedData);
+    })
 })
 
 
