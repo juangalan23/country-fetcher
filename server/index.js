@@ -23,6 +23,7 @@ app.post('/country', function(req, res) {
 app.post('/datapost', function(req, res) {
     console.log('db post request body ', req.body)
     db.saveToDb(req.body);
+    res.sendStatus(201);
 })
 
 

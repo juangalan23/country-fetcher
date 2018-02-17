@@ -21,11 +21,8 @@ var countrySchema = mongoose.Schema({
 var countryModel = mongoose.model('Country', countrySchema);
 
 db.saveToDb = function (country) {
-    console.log('is save to db running')
+    console.log('save to db is running')
     var newCountry = new countryModel(country);
-    // TBD, CAN WE PASS IN THE OBJECT INTO OUR MODEL LIKE THIS?
-    // HOPEFULLY IT'S OKAY BECAUSE WE NAMED OUR PROPERTIES EXACTLY
-    // THE SAME AS THEY ARE COMING IN
     newCountry.save( function(err, newCountry) { }) 
 
 }

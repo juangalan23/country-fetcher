@@ -63,7 +63,7 @@ class App extends React.Component{
                 <SearchCountry search={this.search} />
 
                 
-                 <Country countryinfo={this.state.searchedCountry} />
+                 <Country countryinfo={this.state.searchedCountry} saveToDb={this.saveToDb} />
 
             </div>
 
