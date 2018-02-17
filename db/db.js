@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 if (process.env.NODE_ENV === 'production') {
-    mongoose.connect('mongodb://juangalan23:Asturias23?@ds239648.mlab.com:39648/country-fetcher');
+    mongoose.connect('mongodb://juangalan23:Asturias23?@ds239648.mlab.com:39648/country-fetcher', {
+        useMongoClient: true
+    });
 } else {
     mongoose.connect('mongodb://localhost/country-fetcher');
 }
@@ -12,9 +14,10 @@ var db = mongoose.connection;
 db.on('error', function() {
     console.log('error in mongoose connection');
 })
-db.once('open', function(){
-    console.log('we connected to mongangsta')
-})
+
+// db.once('open', function(){
+//     console.log('we connected to mongangsta')
+// })
 
 var countrySchema = mongoose.Schema({
     name: {type:String,
