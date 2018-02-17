@@ -36,25 +36,28 @@ class DBview extends React.Component{
                 <table style={tableStyle}>
                     <tbody>
                         <tr> 
+                             <th>  </th>
                             <th> Country </th>
                             <th> Capital </th>
                             <th> Region </th>
-                            <th> Flag </th>
+                           
                         </tr>
 
                         {this.props.storedCountries.map((country, i) => 
                         <tr key={country._id}  > 
+                            <td> 
+                                <img 
+                                src={country.flag}
+                                style = {flagStyle}
+                                /> 
+                            </td>
                             <td> {country.name} </td>
                             <td> {country.capital} </td>
                             <td> {country.subregion} </td>
-                            <td> 
-                            <img 
-                            src={country.flag}
-                            style = {flagStyle}
-                            /> 
-                            </td>
+                           
                             <td>  
-                                <button type='click' onClick={this.props.removeItem.bind(this, i)}  >Remove</button> </td>
+                                <button type='click' onClick={this.props.removeItem.bind(this, i)}  >Remove</button> 
+                            </td>
                         </tr>
                         )}         
                     </tbody>
