@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 if (process.env.NODE_ENV === 'production') {
-    mongoose.connect('mongodb://juangalan23:Asturias23?@ds239648.mlab.com:39648/country-fetcher');
+    mongoose.connect('mongodb://ds239648/country-fetcher');
 } else {
     mongoose.connect('mongodb://localhost/country-fetcher');
 }
@@ -52,5 +52,5 @@ db.deleteItem = function (name) {
     })
 }
  
-
+// juangalan23:Asturias23?@ds239648.mlab.com:39648
 module.exports = db;
