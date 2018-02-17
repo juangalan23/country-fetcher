@@ -9,6 +9,11 @@ const flagStyle = {
 }
 
 function Country (props) {
+
+    const handleSubmit = () => {
+        props.saveToDb();
+        props.getDatafromDB();
+    }
     
     return (
         <div> 
@@ -46,7 +51,7 @@ function Country (props) {
                 </tbody>
             </table>
 
-            <button type="submit" value="Save" onSubmit={props.saveToDb}> Save to vaca list! </button>
+            <button type="submit" value="Save" onSubmit={handleSubmit}  > Save to vaca list! </button>
 
         </div>
     )

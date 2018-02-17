@@ -17,19 +17,13 @@ class DBview extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-           
         }
-       
-        
     }
-
 
     componentDidMount() {
         this.props.getDatafromDB();
     }
     
-
-
     render() {
         return (
             <div>

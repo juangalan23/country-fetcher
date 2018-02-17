@@ -74,7 +74,7 @@ class App extends React.Component{
     render() {
         const countryInState = this.state.searchedCountry.name;
         if(countryInState) {
-            var countryToShow =  <Country countryinfo={this.state.searchedCountry} saveToDb={this.saveToDb} />
+            var countryToShow =  <Country countryinfo={this.state.searchedCountry} saveToDb={this.saveToDb} getDatafromDB={this.getDatafromDB} />
         } else {
            var  countryToShow = null;
         }
