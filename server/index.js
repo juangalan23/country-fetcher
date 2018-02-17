@@ -6,11 +6,8 @@ var db = require('../db/db')
 
 const app = express();
 
-
 app.use(express.static(__dirname + '/../client/dist'))
 app.use(bodyparser.json())
-
-
 
 app.post('/country', function(req, res) {
     countryMethods.countryDataRetriever(req.body.country, function(data) {
@@ -47,6 +44,6 @@ app.post('/deleteItem', function(req, res) {
 
 
 
+app.set('port', process.env.PORT || 8080)
 
-
-app.listen(8080, ()=> console.log('listening to port 8080'));
+app.listen(app.get('port'), ()=> console.log('listening to port ' + app.get('port')));
