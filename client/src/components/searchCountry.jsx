@@ -16,7 +16,7 @@ class SearchCountry extends React.Component{
         this.setState({
             searchText: e.target.value
         })
-    }
+    } 
 
     handleSubmit(e) {
         e.preventDefault();

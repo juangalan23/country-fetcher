@@ -13,6 +13,14 @@ class App extends React.Component{
         }
         this.search = this.search.bind(this);
         // this.showCountry = this.showCountry.bind(this);
+        this.saveToDb = this.saveToDb.bind(this);
+    }
+
+    saveToDb () {
+        // can we pass in the state's searched country directly instead 
+        // of just an arguments?
+        console.log('save to db: this state searched country ', this.state.searchedCountry)
+        axios.post('/datapost', this.state.searchedCountry)
     }
 
     search(term) {
@@ -25,6 +33,7 @@ class App extends React.Component{
             this.setState({
                 searchedCountry: res.data
             })
+            this.saveToDb();
             
         })
         .catch((err) => {
@@ -44,6 +53,9 @@ class App extends React.Component{
     // }
 
     render() {
+        // if( ) {
+
+        // }
         return (
             <div>
                 <h2> Search a country to retrieve its basic info </h2>
